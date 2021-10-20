@@ -82,7 +82,6 @@ $(document).ready(function () {
               location.reload();
             }, 1000);
           } else {
-            
             respuestaError("Error!", "Ocurrio un error al registrar el rol.");
           }
         },
@@ -120,7 +119,7 @@ $(document).ready(function () {
               "Se ha subido registrado correctamente el empleado."
             );
             setTimeout(function () {
-              window.location.href = "Ver-categoria";
+              window.location.href = "Ver-empleados";
             }, 1000);
           } else if (data.respuesta == "error") {
             respuestaError(
@@ -241,7 +240,10 @@ $(document).ready(function () {
               location.reload();
             }, 1000);
           } else {
-            respuestaError("Error!", "Ocurrio un error al registrar el cliente.");
+            respuestaError(
+              "Error!",
+              "Ocurrio un error al registrar el cliente."
+            );
           }
         },
       });
@@ -439,6 +441,60 @@ $(document).ready(function () {
 });
 
 /*
+METODO PARA REGISTRAR SERVICIOS
+*/
+$(document).ready(function () {
+  $("#FormRegistrarServicio").on("submit", function (e) {
+    e.preventDefault();
+    var datos = new FormData(this);
+    if (document.getElementById("fotoServicio").files.length == 0) {
+      Swal.fire({
+        icon: "error",
+        title: "¡Ups!",
+        text: "No se ha cargado ningún archivo",
+      });
+    } else {
+      $.ajax({
+        url: "model/registrarServicios.php",
+        data: datos,
+        type: "POST",
+        dataType: "json",
+        contentType: false,
+        processData: false,
+        async: true,
+        cache: false,
+        success: function (data) {
+          console.log(data)
+          if (data.respuesta == "exito") {
+            ingresoExitoso(
+              "¡Exito!",
+              "Se ha subido registrado correctamente la categoria."
+            );
+            setTimeout(function () {
+              window.location.href = "Ver-categoria";
+            }, 1000);
+          } else if (data.respuesta == "error") {
+            respuestaError(
+              "Error!",
+              "Ocurrio un error al registrar la categoria."
+            );
+          } else if (data.respuesta == "noformato") {
+            respuestaError(
+              "Error!",
+              "Debe de elegir una foto con extensión .jpg, .jpeg, .png."
+            );
+          } else if (data.respuesta == "notamano") {
+            respuestaError("Error!", "Debe de elegir un tamaño menor a 4MB.");
+          } else if (data.respuesta == "vacio") {
+            respuestaError("Error!", "Debe de completar los campos.");
+          }
+        },
+      });
+    }
+  });
+});
+
+/*
 METODO PARA REGISTRAR COMPRA
 */
 $(document).ready(function () {
@@ -451,7 +507,6 @@ $(document).ready(function () {
       Cantidad: { required: true, number: true },
       Precio: { required: true, number: true },
       totalPago: { required: true, number: true },
-      
     },
     messages: {
       Empleado: { required: "Debe de completar los campos." },
@@ -473,7 +528,6 @@ $(document).ready(function () {
         required: "Debe de completar los campos.",
         number: "Selecciona uno",
       },
-     
     },
     errorElement: "span",
     errorPlacement: function (error, element) {
@@ -495,7 +549,6 @@ $(document).ready(function () {
         Cantidad: $("#Cantidad").val(),
         Precio: $("#Precio").val(),
         totalPago: $("#totalPago").val(),
-        
       };
       $.ajax({
         url: "model/registrarCompra.php",
@@ -513,7 +566,10 @@ $(document).ready(function () {
               location.reload();
             }, 1000);
           } else {
-            respuestaError("Error!", "Ocurrio un error al registrar la compra.");
+            respuestaError(
+              "Error!",
+              "Ocurrio un error al registrar la compra."
+            );
           }
         },
       });
