@@ -1,88 +1,67 @@
-<div class="wrapper">
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Ver Servicios</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="dashboard">Inicio</a></li>
-                            <li class="breadcrumb-item active">Ver servicios</li>
-                        </ol>
-                    </div>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Listado</h1>
                 </div>
-            </div><!-- /.container-fluid -->
-        </section>
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card card-primary">
-                            <div class="card-header">
-                                <h4 class="card-title">Servicios</h4>
-                            </div>
-                            <div class="card-body">
-                                <div>
-                                    <div class="btn-group w-100 mb-2">
-                                        <a class="btn btn-info active" href="javascript:void(0)" data-filter="all"> Todos los items </a>
-                                        <a class="btn btn-info" href="javascript:void(0)" data-filter="1"> Category 1 (WHITE) </a>
-                                        <a class="btn btn-info" href="javascript:void(0)" data-filter="2"> Category 2 (BLACK) </a>
-                                        <a class="btn btn-info" href="javascript:void(0)" data-filter="3"> Category 3 (COLORED) </a>
-                                        <a class="btn btn-info" href="javascript:void(0)" data-filter="4"> Category 4 (COLORED, BLACK) </a>
-                                    </div>
-                                    <div class="mb-2">
-
-                                        <div class="float-right">
-                                            <select class="custom-select" style="width: auto;" data-sortOrder>
-                                                <option value="index"> Seleccionar </option>
-                                                <option value="sortData"> Alfabeticamente </option>
-                                            </select>
-                                            <div class="btn-group">
-                                                <a class="btn btn-default" href="javascript:void(0)" data-sortAsc> Ascendente </a>
-                                                <a class="btn btn-default" href="javascript:void(0)" data-sortDesc> Descendente </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="filter-container p-3 row">
-                                        <?php
-                                        $query = $conexion->query("SELECT * FROM `tipo_servicio` ORDER BY descripcion ASC");
-                                        while ($row = mysqli_fetch_array($query)) {
-
-
-                                            $_SESSION['id_tservicio'] = $row['id_tservicio'];
-
-                                            echo "
-                                            <div class='contenedor'>
-                                                <div class='filtr-item col-sm-2' data-category='1' data-sort=''>
-                                                    <a href='#' data-toggle='lightbox' data-title='2'>
-                                                        <figure>
-                                                            <img src='model/" . $row['ruta_imagen'] . "' class='img-fluid mb-2' alt='" . $row['descripcion'] . "' />
-                                                            <div class='capa'>
-                                                                <h3>" . $row['descripcion'] . "</h3>
-                                                                <p>
-                                                                    <a href='Categoria'><button type='button' class='btn btn-block btn-primary'>Ir</button></a>
-                                                                </p>                                                               
-                                                            </div>
-                                                        </figure>
-                                                    </a>
-                                                </div>
-                                            </div>";
-                                        }
-
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="dashboard">Inicio</a></li>
+                        <li class="breadcrumb-item active">Ver empleados</li>
+                    </ol>
                 </div>
             </div>
-        </section>
-    </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Lista de empleados</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Descripcion</th>
+                                <th>Empleado</th>
+                                <th>Cliente</th>
+                                <th>Tipo de servicio </th>
+                                <th>fecha</th>
+                                <th>estado</th>
+                                <th>Imagen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+
+                            $query = $conexion->query("SELECT s.id_servicio, s.descripcion, e.nom_emp, e.ape_emp,c.nom_cliente,c.ape_cliente,ti.ti_descripcion, s.fecha, s.estado, s.ruta_imagen FROM servicio s INNER JOIN empleado e on s.id_empleado = e.id_emp INNER JOIN cliente c on c.id_cliente = s.id_cliente INNER JOIN tipo_servicio ti on ti.id_tservicio = s.id_tservicio");
+                            while ($row = mysqli_fetch_array($query)) {
+
+                                echo "
+                                    <tr>
+                                        <td>" . $row['id_servicio'] . "</td>
+                                        <td>" . $row['descripcion'] . "</td>
+                                        <td>" . $row['nom_emp'] . " " . $row['ape_emp'] . "</td>
+                                        <td>" . $row['nom_cliente'] . " " . $row['ape_cliente'] . "</td>                                        
+                                        <td>" . $row['ti_descripcion'] . "</td>
+                                        <td>" . $row['fecha'] . "</td>
+                                        <td>" . $row['estado'] . "</td>                                        
+                                        <td><img src='model/" . $row['ruta_imagen'] . "' width='100' height='100' /> </td>            
+                                    </tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+    </section>
 </div>

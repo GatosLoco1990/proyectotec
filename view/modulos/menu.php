@@ -12,10 +12,10 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <?php
-          if ($_SESSION['rol'] == 1 || ($_SESSION['rol'] == 2)){
-          echo "<img src='model/".$_SESSION['imagen']."' class='img-circle elevation-2'  alt='profile foto'>";
+          if ($_SESSION['rol'] == 1 || ($_SESSION['rol'] == 2)) {
+            echo "<img src='model/" . $_SESSION['imagen'] . "' class='img-circle elevation-2'  alt='profile foto'>";
           } else
-          echo "<img src='view/presentacion/dist/img/AdminLTELogo.png' class='img-circle elevation-2'  alt='profile foto'>";
+            echo "<img src='view/presentacion/dist/img/AdminLTELogo.png' class='img-circle elevation-2'  alt='profile foto'>";
           ?>
         </div>
         <div class="info">
@@ -80,6 +80,41 @@
                   </a>
                 </li>
               </ul>
+              <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-hammer"></i>
+                <p>
+                  Servicios
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="Ver-servicios" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Ver servicios</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="Registrar-servicios" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Registrar servicios</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="Ver-entrega" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Ver entregas</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="Registrar-entrega" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Registrar entregas</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
             <li class="nav-item">
               <a href="Registrar-cliente" class="nav-link">
                 <i class="nav-icon fa fa-user fa-fw"></i>
@@ -237,7 +272,7 @@
 
               </ul>
             </li>
-            
+
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fa fa-users fa-fw"></i>
@@ -287,15 +322,27 @@
                     <p>Registrar servicios</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="Ver-servicios" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Ver entregas</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="Registrar-servicios" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Registrar entregas</p>
+                  </a>
+                </li>
               </ul>
             </li>
 
-           
+
             <li class="nav-item">
-              <a href="Reporte-sucursal" class="nav-link">
+              <a href="model/Reporte-Clientes.php" class="nav-link" target="_blank">
                 <i class="nav-icon fa fa-scroll fa-fw"></i>
                 <p>
-                  Reporte Sucursal
+                  Reporte clientes
                 </p>
               </a>
             </li>
@@ -308,7 +355,7 @@
               </a>
             </li>
 
-          <?php }?>
+          <?php } ?>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

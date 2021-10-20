@@ -13,7 +13,7 @@ if (isset($_GET["ubicacion"])) {
         || $_GET["ubicacion"] == "certificado"
         || $_GET["ubicacion"] == "Salir" || $_GET["ubicacion"] == "Reporte-sucursal" || $_GET["ubicacion"] == "Ver-empleados" || $_GET["ubicacion"] == "Ver-clientes"
         || $_GET["ubicacion"] == "Ver-productos" || $_GET["ubicacion"] == "Reporte-compras" || $_GET["ubicacion"] == "Ver-servicios" 
-        || $_GET["ubicacion"] == "Registrar-servicios"
+        || $_GET["ubicacion"] == "Registrar-servicios" || $_GET["ubicacion"] == "Registrar-entrega" || $_GET["ubicacion"] == "registrarEntrega"
     ) { ?>
         <!DOCTYPE html>
         <html lang="es">
