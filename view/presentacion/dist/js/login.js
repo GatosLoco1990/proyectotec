@@ -40,7 +40,7 @@ $(document).ready(function () {
         success: function (data) {
           console.log(data)
           if (data.respuesta == "exito") {
-            ingresoExitoso("¡Inicio Sesión!", "Bienvenido(a) a Olimpica RGV");
+            ingresoExitoso("¡Inicio Sesión!", "Bienvenido(a) a COMPUTECK");
             setTimeout(function () {
               location.reload();
             }, 1000);
