@@ -44,7 +44,7 @@ $pdf->Cell(40, 8, utf8_decode('CORREO'), 1, 0, 'C', 1);
 $pdf->Cell(20, 8, utf8_decode('TELEFONO'), 1, 0, 'C', 1);
 $pdf->Cell(50, 8, utf8_decode('DIRECCION'), 1, 1, 'C', 1);
 
-$consulta = "SELECT cl.nom_cliente, cl.ape_cliente, s.descripcion, cl.correo_cliente, cl.tel_cliente, cl.dir_cliente from cliente cl INNER JOIN ciudad ci on cl.id_ciudad = ci.id_ciudad INNER JOIN sucursal su on su.id_ciudad = ci.id_ciudad INNER JOIN sexo s on cl.sexo_cliente = s.id WHERE su.id_sucursal = '2'";
+$consulta = "SELECT cl.nom_cliente, cl.ape_cliente, s.descripcion, cl.correo_cliente, cl.tel_cliente, cl.dir_cliente from cliente cl INNER JOIN ciudad ci on cl.id_ciudad = ci.id_ciudad INNER JOIN sucursal su on su.id_ciudad = ci.id_ciudad INNER JOIN sexo s on cl.sexo_cliente = s.id";
 $result = mysqli_query($conexion, $consulta);
 
 while ($data = mysqli_fetch_array($result)) {
