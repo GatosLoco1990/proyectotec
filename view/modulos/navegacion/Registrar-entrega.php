@@ -26,29 +26,29 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form id="FormRegistrarCliente" name="FormRegistrarEntrega" method="POST">
+                        <form id="FormRegistrarEntrega" name="FormRegistrarEntrega" method="POST">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="fecha de nacimiento">Fecha de ingreso</label>
-                                    <input type="date" class="form-control" id="fechaingCliente" name="fechaingCliente" placeholder="Fecha de ingreso">
+                                    <input type="date" class="form-control" id="fechaing" name="fechaing" placeholder="Fecha de ingreso">
                                 </div>
                                 <div class="form-group">
                                     <label for="nombre">Resultado</label>
-                                    <input type="text" class="form-control" id="nombreCliente" name="nombreCliente" placeholder="Nombres">
+                                    <input type="text" class="form-control" id="resultado" name="resultado" placeholder="Resultado">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="doc">Documento</label>
-                                    <input type="number" class="form-control" id="documentoCliente" name="documentoCliente" placeholder="Documento">
+                                    <label for="doc">Valor</label>
+                                    <input type="number" class="form-control" id="valor" name="valor" placeholder="Valor">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Servicio</label>
-                                    <select class="custom-select" id="ciudadCliente" name="ciudadCliente">
+                                    <select class="custom-select" id="servicio" name="servicio">
                                         <?php
-                                        $query = $conexion->query("SELECT * FROM ciudad ORDER BY `desc_ciudad` ASC");
+                                        $query = $conexion->query("SELECT * FROM `servicio`");
                                         while ($valores = mysqli_fetch_array($query)) {
-                                            echo '<option value="' . $valores['id_ciudad'] . '">' . utf8_encode($valores['desc_ciudad']) . '</option>';
+                                            echo '<option value="' . $valores['id_servicio'] . '">' . utf8_encode($valores['id_servicio']) ." - ".utf8_encode($valores['descripcion']). '</option>';
                                         }
                                         ?>
                                     </select>

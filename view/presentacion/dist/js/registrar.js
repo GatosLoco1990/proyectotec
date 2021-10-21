@@ -252,6 +252,74 @@ $(document).ready(function () {
 });
 
 /*
+METODO PARA REGISTRAR ENTREGA
+*/
+$(document).ready(function () {
+  $("#FormRegistrarEntrega").validate({
+    rules: {
+      fechaing: { required: true, date: true },
+      resultado: { required: true },
+      valor: { required: true, number: true },
+      servicio: { required: true, number: true },
+    },
+    messages: {
+      fechaing: {
+        required: "Debe de completar los campos.",
+        date: "Debe ingresar una fecha",
+      },
+      resultado: { required: "Debe de completar los campos." },
+      valor: {
+        required: "Debe de completar los campos.",
+        number: "Debe ingresar un numero",
+      },
+      servicio: { required: "Debe de completar los campos." },
+    },
+    errorElement: "span",
+    errorPlacement: function (error, element) {
+      error.addClass("invalid-feedback");
+      element.closest(".form-group").append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass("is-invalid");
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass("is-invalid");
+    },
+    submitHandler: function () {
+      var datos = {
+        fechaing: $("#fechaing").val(),
+        resultado: $("#resultado").val(),
+        valor: $("#valor").val(),
+        servicio: $("#servicio").val(),
+        
+      };
+      $.ajax({
+        url: "model/registrarEntrega.php",
+        method: "post",
+        data: datos,
+        dataType: "json",
+        type: "POST",
+        beforeSend: function () {
+          respuestaInfoEspera("Registrando... ¡Espere por favor!");
+        },
+        success: function (data) {
+          if (data.respuesta == "exito") {
+            ingresoExitoso("Exito!", "Se registro correctamente la entrega.");
+            setTimeout(function () {
+              location.reload();
+            }, 1000);
+          } else {
+            respuestaError(
+              "Error!",
+              "Ocurrio un error al registrar la entrega."
+            );
+          }
+        },
+      });
+    },
+  });
+});
+/*
 METODO PARA REGISTRAR PRODUCTO
 */
 $(document).ready(function () {
@@ -464,7 +532,7 @@ $(document).ready(function () {
         async: true,
         cache: false,
         success: function (data) {
-          console.log(data)
+          console.log(data);
           if (data.respuesta == "exito") {
             ingresoExitoso(
               "¡Exito!",

@@ -42,3 +42,25 @@
         }
     });
 }
+
+/**
+ * METODO PARA OBTENER EL ID DEL EMPLEADO PARA CERTIFICADO
+ * Y LUEGO ENVIARLA A OTRA VISTA CON ESE PARAMETRO
+ * @param  id 
+ */
+ function verCategoria(id) {
+    categoria = id;
+    var datos = new FormData();
+    datos.append("categoria", categoria);
+    $.ajax({
+        url: "model/proceso.php",
+        type: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (respuesta) {
+            window.location.href = "Categoria";
+        }
+    });
+}

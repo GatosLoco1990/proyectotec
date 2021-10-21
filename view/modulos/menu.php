@@ -80,7 +80,7 @@
                   </a>
                 </li>
               </ul>
-              <li class="nav-item">
+            <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-hammer"></i>
                 <p>
@@ -114,6 +114,12 @@
                   </a>
                 </li>
               </ul>
+            </li>
+            <li class="nav-item">
+              <a href="certificado" class="nav-link">
+                <i class="far fa-id-card nav-icon"></i>
+                <p>Generar certificado</p>
+              </a>
             </li>
             <li class="nav-item">
               <a href="Registrar-cliente" class="nav-link">

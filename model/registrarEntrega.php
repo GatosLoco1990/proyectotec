@@ -3,20 +3,14 @@
 
 require_once 'conexion.php';
 
-$nombre = $_POST['nombreCliente'];
-$apellido = $_POST['apellidoCliente'];
-$tipodoc = $_POST['tipodocCliente'];
-$documento = $_POST['documentoCliente'];
-$telefono = $_POST['telCliente'];
-$sexo = $_POST['sexoCliente'];
-$correo = $_POST['correoCliente'];
-$fenac = $_POST['fenacCliente'];
-$fecha = $_POST['fechaingCliente'];
-$direccion = $_POST['dirCliente'];
-$ciudad = $_POST['ciudadCliente'];
+$fecha = $_POST['fechaing'];
+$resultado = $_POST['resultado'];
+$valor = $_POST['valor'];
+$servicio = $_POST['servicio'];
 
 
-$query = "INSERT INTO cliente (id_cliente, nom_cliente, ape_cliente, tipodoc, doc_cliente, tel_cliente, sexo_cliente, correo_cliente, fecha_nac_cliente, fecha_cliente,dir_cliente, id_ciudad, rol) VALUES (NULL, '$nombre', '$apellido', '$tipodoc', '$documento', '$telefono', '$sexo', '$correo', '$fenac', '$fecha', '$direccion', '$ciudad', '3')";
+
+$query = "INSERT INTO entrega (id_entrega, fecha_entrega, resultado, costo_neto, id_servicio) VALUES (NULL, '$fecha', '$resultado', '$valor', '$servicio')";
 
 $sql = $conexion->query($query );
 
