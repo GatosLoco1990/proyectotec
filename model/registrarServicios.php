@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 
 require_once 'conexion.php';
 //die(json_encode($_POST));
@@ -7,10 +8,13 @@ require_once 'conexion.php';
 
 $descripcion = $_POST['desc_servicio'];
 $empleado =  $_SESSION['idemp'];
+//$empleado =  "13";
 $cliente = $_POST['Cliente'];
 $tipo = $_POST['tserv'];
 $fecha = $_POST['fechaIngreso'];
 $estado = $_POST['estado'];
+
+//die(json_encode($empleado));
 
 $directorio = "archivos/imagenes/servicios/";
 
@@ -21,15 +25,13 @@ if (empty($descripcion) || empty($estado)) {
         mkdir($directorio, 0755, true); // MK DIR crear carpeta 0755 permisos de escritura
     }
     if ($_FILES['fotoServicio']['size'] <= 4000000) {
-
         if (
             $_FILES['fotoServicio']['type'] == "image/jpg"
             || $_FILES['fotoServicio']['type'] == "image/jpeg"
             || $_FILES['fotoServicio']['type'] == "image/png"
             || $_FILES['fotoServicio']['type'] == "image/gif"
         ) {
-            if (move_uploaded_file($_FILES['fotoServicio']['tmp_name'], $directorio . $_FILES['fotoCategoria']['name'])) {
-
+            if (move_uploaded_file($_FILES['fotoServicio']['tmp_name'], $directorio . $_FILES['fotoServicio']['name'])) {
                 $archivo_url = $directorio . $_FILES['fotoServicio']['name'];
                 $nombreImagen = $_FILES['fotoServicio']['name'];
                 $sql = "INSERT INTO servicio (id_servicio, descripcion, id_empleado, id_cliente, id_tservicio, fecha, estado, ruta_imagen, imagen) VALUES (NULL, '$descripcion', '$empleado', '$cliente', '$tipo', '$fecha','$estado', '$archivo_url', '$nombreImagen')";
