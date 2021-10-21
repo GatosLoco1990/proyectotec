@@ -54,7 +54,7 @@
                                         <?php
                                         $query = $conexion->query("SELECT * FROM tipo_servicio");
                                         while ($valores = mysqli_fetch_array($query)) {
-                                            echo '<option value="' . $valores['id_tservicio'] . '">' . utf8_encode($valores['descripcion']) . '</option>';
+                                            echo '<option value="' . $valores['id_tservicio'] . '">' . utf8_encode($valores['ti_descripcion']) . '</option>';
                                         }
                                         ?>
                                     </select>
