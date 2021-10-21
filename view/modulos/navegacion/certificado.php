@@ -31,7 +31,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form id="FormRegistrarEmpleado" name="FormRegistrarEmpleado" method="POST">
+                        <form action="model/crear_certificado.php">
                             <div class="card-body">
                                 
                                 <div class="form-group">
